@@ -65,5 +65,5 @@ jobs:
 
       - name: Publish package to npm
         run: |
-          TARBALL=$(bun pm pack --quiet)
+          TARBALL=$(bun pm pack)
           npm publish "$TARBALL"
