@@ -1,7 +1,6 @@
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 permissions:
   id-token: write
@@ -12,18 +11,18 @@ permissions:
 name: release-please
 
 jobs:
-  publish:
-    name: Publish
+  check-version:
     runs-on: ubuntu-latest
+    outputs:
+      already_published: ${{ steps.npm_check.outputs.already_published }}
+
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
-          registry-url: https://registry.npmjs.org
 
-      - name: Detect already published version
-        id: npm_check
+      - id: check
         run: |
           NAME=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
@@ -34,11 +33,18 @@ jobs:
             echo "already_published=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Stop job if already published
-        if: steps.npm_check.outputs.already_published == 'true'
-        run: |
-          echo "Version already published, skipping publish job."
-          exit 0
+  publish:
+    needs: check-version
+    if: needs.check-version.outputs.already_published != 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
 
       - name: Check for Rust Code
         id: check_rust
@@ -57,14 +63,8 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build package
-        run: bun run build
-
-      - name: Publish package to npm
-        run: |
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - run: |
           bun pm pack
-          TARBALL=$(ls *.tgz)
-          npm publish "$TARBALL"
+          npm publish *.tgz
