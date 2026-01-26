@@ -59,10 +59,7 @@ jobs:
           fi
 
       - name: Install Rust (WASM Target)
-        if: steps.check_rust.outputs.has_rust == 'true'
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-wasip1
+        run: rustup target add wasm32-wasip1
 
       - uses: oven-sh/setup-bun@v2
 
