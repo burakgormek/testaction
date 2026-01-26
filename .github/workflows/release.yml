@@ -63,5 +63,5 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run build
       - run: |
-          TARBALL=$(bun pm pack --quiet)
-          npm publish "$TARBALL"
+          Tbun pm pack --filename package.tgz
+          npm publish package.tgz
