@@ -1,6 +1,9 @@
 {
   "name": "testactionpackage123",
   "version": "0.0.2",
+  "repository": {
+    "url": "https://github.com/burakgormek/testaction"
+  },
   "scripts": {
     "build": "echo Build"
   }
