@@ -69,5 +69,5 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run build
       - run: |
-          bun pm pack --filename $PWD/package.tgz
+          bun pm pack --filename ./package.tgz
           npm publish package.tgz
