@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/core
+        working-directory: package/core
     outputs:
       already_published: ${{ steps.npm_check.outputs.already_published }}
     steps:
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/core
+        working-directory: package/core
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
