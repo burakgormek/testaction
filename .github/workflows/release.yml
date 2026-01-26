@@ -70,4 +70,4 @@ jobs:
       - run: bun run build
       - run: |
           bun pm pack --filename $PWD/package.tgz
-          npm publish $PWD/package.tgz
+          npm publish package.tgz
