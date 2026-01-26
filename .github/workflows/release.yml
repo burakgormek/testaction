@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       already_published: ${{ steps.npm_check.outputs.already_published }}
-
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
@@ -37,10 +36,8 @@ jobs:
     needs: check-version
     if: needs.check-version.outputs.already_published != 'true'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v5
-
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
