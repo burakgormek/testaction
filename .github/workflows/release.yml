@@ -1,9 +1,9 @@
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
-  id-token: write
   contents: write
   issues: write
   pull-requests: write
@@ -11,60 +11,20 @@ permissions:
 name: release-please
 
 jobs:
-  check-version:
+  release-please:
+    name: Release
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: package/core
     outputs:
-      already_published: ${{ steps.npm_check.outputs.already_published }}
+      releases_created: ${{ steps.release.outputs.releases_created }}
+      paths_released: ${{ steps.release.outputs.paths_released }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
+      - id: release
+        uses: googleapis/release-please-action@v4
         with:
-          node-version: "24"
-
-      - id: npm_check
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - name: Debug outputs
         run: |
-          NAME=$(node -p "require('./package.json').name")
-          VERSION=$(node -p "require('./package.json').version")
-
-          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
-            echo "already_published=true" >> $GITHUB_OUTPUT
-          else
-            echo "already_published=false" >> $GITHUB_OUTPUT
-          fi
-
-  publish:
-    needs: check-version
-    if: needs.check-version.outputs.already_published != 'true'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: package/core
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-          registry-url: https://registry.npmjs.org
-
-      - name: Check for Rust Code
-        id: check_rust
-        run: |
-          if [ -f "Cargo.toml" ]; then
-            echo "has_rust=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_rust=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Install Rust (WASM Target)
-        run: rustup target add wasm32-wasip1
-
-      - uses: oven-sh/setup-bun@v2
-
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - run: |
-          bun pm pack --filename $PWD/package.tgz
-          npm publish package.tgz
+          echo "releases_created = ${{ steps.release.outputs.releases_created }}"
+          echo "paths_released = ${{ steps.release.outputs.paths_released }}"

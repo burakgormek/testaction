@@ -1,0 +1,25 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "root",
+    },
+    "packages/test-plugin": {
+      "name": "test-plugin",
+      "version": "0.1.0",
+      "devDependencies": {
+        "utils": "workspace:",
+      },
+    },
+    "packages/utils": {
+      "name": "utils",
+      "version": "0.0.1",
+    },
+  },
+  "packages": {
+    "test-plugin": ["test-plugin@workspace:packages/test-plugin"],
+
+    "utils": ["utils@workspace:packages/utils"],
+  }
+}

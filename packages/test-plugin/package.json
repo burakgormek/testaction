@@ -1,0 +1,10 @@
+{
+  "name": "test-plugin",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "echo 'test'"
+  },
+  "devDependencies": {
+    "utils": "workspace:*"
+  }
+}
