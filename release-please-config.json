@@ -5,6 +5,11 @@
     "packages/test-plugin": {
       "release-type": "node",
       "bump-minor-pre-major": true
+    },
+    "packages/utils": {
+      "release-type": "node",
+      "bump-minor-pre-major": true,
+      "skip-github-release": true
     }
   },
   "plugins": [
