@@ -5,19 +5,25 @@
     "": {
       "name": "root",
     },
+    "packages/new-plugin": {
+      "name": "new-plugin",
+      "version": "0.1.1",
+    },
     "packages/test-plugin": {
       "name": "test-plugin",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "devDependencies": {
         "utils": "workspace:",
       },
     },
     "packages/utils": {
       "name": "utils",
-      "version": "0.0.1",
+      "version": "1.0.0",
     },
   },
   "packages": {
+    "new-plugin": ["new-plugin@workspace:packages/new-plugin"],
+
     "test-plugin": ["test-plugin@workspace:packages/test-plugin"],
 
     "utils": ["utils@workspace:packages/utils"],
