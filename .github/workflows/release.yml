@@ -19,7 +19,7 @@ jobs:
       paths_released: ${{ steps.release.outputs.paths_released }}
     steps:
       - id: release
-        uses: googleapis/release-please-action@v4
+        uses: burakgormek/release-please-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
