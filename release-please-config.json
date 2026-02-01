@@ -13,7 +13,7 @@
     "packages/utils": {
       "release-type": "node",
       "bump-minor-pre-major": true,
-      "skip-github-release": true,
+      "draft": true,
       "force-tag-creation": true
     }
   },
