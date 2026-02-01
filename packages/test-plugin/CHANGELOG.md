@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.7](https://github.com/burakgormek/testaction/compare/test-plugin@v0.1.6...test-plugin@v0.1.7) (2026-02-01)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * utils bumped to 1.0.6
+
 ## [0.1.6](https://github.com/burakgormek/testaction/compare/test-plugin@v0.1.5...test-plugin@v0.1.6) (2026-01-31)
 
 
