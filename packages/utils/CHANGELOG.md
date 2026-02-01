@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/burakgormek/testaction/compare/utils@v1.0.6...utils@v1.0.7) (2026-02-01)
+
+
+### Bug Fixes
+
+* **utils:** test ([cf7e9c7](https://github.com/burakgormek/testaction/commit/cf7e9c78ad534c5de0360dffd30ec6faea9abf71))
+
 ## [1.0.6](https://github.com/burakgormek/testaction/compare/utils@v1.0.5...utils@v1.0.6) (2026-02-01)
 
 
