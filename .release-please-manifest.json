@@ -1,5 +1,5 @@
 {
-  "packages/test-plugin": "0.1.8",
+  "packages/test-plugin": "0.1.9",
   "packages/new-plugin": "0.1.0",
-  "packages/utils": "1.0.7"
+  "packages/utils": "1.0.8"
 }
