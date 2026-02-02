@@ -31,13 +31,16 @@ jobs:
 
       - name: Filter out draft packages
         id: filter
+        env:
+          ALL_OUTPUTS: ${{ toJson(steps.release.outputs) }}
         run: |
           PATHS='${{ steps.release.outputs.paths_released }}'
           FILTERED="[]"
           
           for path in $(echo "$PATHS" | jq -r '.[]'); do
             # Check if this package was marked as draft
-            IS_DRAFT="${{ steps.release.outputs[format('{0}--draft', "path")] }}"
+            DRAFT_KEY="${path}--draft"
+            IS_DRAFT=$(echo "$ALL_OUTPUTS" | jq -r ".[\"$DRAFT_KEY\"] // \"false\"")
             
             if [ "$IS_DRAFT" != "true" ]; then
               FILTERED=$(echo "$FILTERED" | jq -c ". + [\"$path\"]")
