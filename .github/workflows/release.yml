@@ -28,3 +28,20 @@ jobs:
         run: |
           echo "releases_created = ${{ steps.release.outputs.releases_created }}"
           echo "paths_released = ${{ steps.release.outputs.paths_released }}"
+
+      - name: Filter out draft packages
+        run: |
+          PATHS='${{ steps.release.outputs.paths_released }}'
+          CONFIG=$(cat release-please-config.json)
+          FILTERED="[]"
+          
+          for path in $(echo "$PATHS" | jq -r '.[]'); do
+            # Check if this package has draft: true in config
+            IS_DRAFT=$(echo "$CONFIG" | jq -r ".packages.\"$path\".draft // false")
+            
+            if [ "$IS_DRAFT" != "true" ]; then
+              FILTERED=$(echo "$FILTERED" | jq -c ". + [\"$path\"]")
+            fi
+          done
+          
+          echo "filtered_paths=$FILTERED" >> $GITHUB_OUTPUT
