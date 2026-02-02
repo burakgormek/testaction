@@ -30,14 +30,14 @@ jobs:
           echo "paths_released = ${{ steps.release.outputs.paths_released }}"
 
       - name: Filter out draft packages
+        id: filter
         run: |
           PATHS='${{ steps.release.outputs.paths_released }}'
-          CONFIG=$(cat release-please-config.json)
           FILTERED="[]"
           
           for path in $(echo "$PATHS" | jq -r '.[]'); do
-            # Check if this package has draft: true in config
-            IS_DRAFT=$(echo "$CONFIG" | jq -r ".packages.\"$path\".draft // false")
+            # Check if this package was marked as draft
+            IS_DRAFT="${{ steps.release.outputs[format('{0}--draft', "path")] }}"
             
             if [ "$IS_DRAFT" != "true" ]; then
               FILTERED=$(echo "$FILTERED" | jq -c ". + [\"$path\"]")
