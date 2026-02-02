@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.13](https://github.com/burakgormek/testaction/compare/utils@v1.0.12...utils@v1.0.13) (2026-02-02)
+
+
+### Bug Fixes
+
+* **utils:** fix ([c20c002](https://github.com/burakgormek/testaction/commit/c20c0020e789421282c098016581d54a5b447cea))
+* **utils:** fix ([e016a64](https://github.com/burakgormek/testaction/commit/e016a64e67f23f63c792e2aaf69b4bf9e2148bea))
+* **utils:** new ([0d5fe21](https://github.com/burakgormek/testaction/commit/0d5fe21bfa9d4888174952d152489ec95f8e2ce9))
+* **utils:** new ([b84a3e5](https://github.com/burakgormek/testaction/commit/b84a3e56d5dfed0d49ba6e35cb055d8bb6497e5d))
+* **utils:** test ([cf7e9c7](https://github.com/burakgormek/testaction/commit/cf7e9c78ad534c5de0360dffd30ec6faea9abf71))
+* **utils:** test upd ([81b6294](https://github.com/burakgormek/testaction/commit/81b6294e942a539320a91b33db58afa78a6bc79d))
+* **utils:** update ([6d64202](https://github.com/burakgormek/testaction/commit/6d64202eb8ada2d48c136ebfc5f7fb65b8a158d3))
+
 ## [1.0.12](https://github.com/burakgormek/testaction/compare/utils@v1.0.11...utils@v1.0.12) (2026-02-02)
 
 
