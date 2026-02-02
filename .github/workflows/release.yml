@@ -38,7 +38,6 @@ jobs:
           FILTERED="[]"
           
           for path in $(echo "$PATHS" | jq -r '.[]'); do
-            # Check if this package was marked as draft
             DRAFT_KEY="${path}--draft"
             IS_DRAFT=$(echo "$ALL_OUTPUTS" | jq -r ".[\"$DRAFT_KEY\"] // \"false\"")
             
@@ -48,3 +47,9 @@ jobs:
           done
           
           echo "filtered_paths=$FILTERED" >> $GITHUB_OUTPUT
+
+      - name: Debug outputs
+        run: |
+          echo "releases_created = ${{ steps.release.outputs.releases_created }}"
+          echo "paths_released (all) = ${{ steps.release.outputs.paths_released }}"
+          echo "filtered_paths (publishable) = ${{ steps.filter.outputs.filtered_paths }}"
