@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/burakgormek/testaction/compare/utils@v1.0.11...utils@v1.0.12) (2026-02-02)
+
+
+### Bug Fixes
+
+* **utils:** new ([0d5fe21](https://github.com/burakgormek/testaction/commit/0d5fe21bfa9d4888174952d152489ec95f8e2ce9))
+
 ## [1.0.11](https://github.com/burakgormek/testaction/compare/utils@v1.0.10...utils@v1.0.11) (2026-02-01)
 
 
